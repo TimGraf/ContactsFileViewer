@@ -1,4 +1,4 @@
-package com.grafcode.meetupmanager.model;
+package com.grafcode.contactsfileviewer.model;
 
 import java.net.URI;
 import java.util.Date;

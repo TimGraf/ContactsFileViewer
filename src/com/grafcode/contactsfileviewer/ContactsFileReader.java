@@ -1,4 +1,4 @@
-package com.grafcode.meetupmanager;
+package com.grafcode.contactsfileviewer;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
