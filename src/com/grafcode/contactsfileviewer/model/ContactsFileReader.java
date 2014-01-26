@@ -15,9 +15,9 @@ public class ContactsFileReader {
 		fileReader = new BufferedReader(new FileReader(fileName));
 	}
 	
-	public ContactsModel createContactsStoreFromFile() throws URISyntaxException, IOException {
-		String        nextLine;
-		ContactsModel store = new ContactsModel();
+	public ContactsModel buildContactsModelFromFile() throws URISyntaxException, IOException {
+		String        nextLine = fileReader.readLine(); // read header line but don't use it
+		ContactsModel store    = new ContactsModel();
 		
 		while ((nextLine = fileReader.readLine()) != null) {
             String[] tokens  = nextLine.split(VALUE_SEPERATOR);

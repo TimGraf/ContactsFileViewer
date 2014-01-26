@@ -9,7 +9,7 @@ public class Contact {
 	
 	public enum MAILING_LIST {DIGEST, YES, NO};
 	
-	private String       name;
+	private String       userName;
 	private String       userId;
 	private String       title;
 	private String       memberId;
@@ -72,7 +72,7 @@ public class Contact {
 	}
 
 	private Contact(String[] tokens) throws URISyntaxException {
-		this.name 				= tokens[0];
+		this.userName 			= tokens[0];
 		this.userId 			= tokens[1];
 		this.title 				= tokens[2];
 		this.memberId 			= tokens[3];
@@ -93,8 +93,8 @@ public class Contact {
 		this.profileUri 		= stringTokenToUri(tokens[18]);
 	}
 
-	public String getName() {
-		return name;
+	public String getUserName() {
+		return userName;
 	}
 
 	public String getUserId() {

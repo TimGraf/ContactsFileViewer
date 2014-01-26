@@ -57,9 +57,11 @@ public class ContactsFileViewer {
 		}
 		
 		if (commandLine.hasOption(PRINT_COMPANIES_OPTION)) {
+			contactsController.displayUniqueSortedComanyNames();
 		} 
 		
 		if (commandLine.hasOption(PRINT_USERS_OPTION)) {
+			contactsController.displayAllUserNamesSorted();
 		} 
 		
 		if (commandLine.hasOption(PRINT_HELP_OPTION)) {

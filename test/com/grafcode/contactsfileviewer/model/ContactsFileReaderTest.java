@@ -1,4 +1,4 @@
-package com.grafcode.contactsfileviewer;
+package com.grafcode.contactsfileviewer.model;
 
 import static org.junit.Assert.assertEquals;
 
