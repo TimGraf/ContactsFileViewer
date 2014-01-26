@@ -50,7 +50,7 @@ public class ContactsFileViewer {
 		ContactsController contactsController = new ContactsController();
 		
 		if (commandLine.hasOption(FILE_OPTION)) {
-			// XXX required option
+			// XXX required option if 
 			String fileName = commandLine.getOptionValue(FILE_OPTION);
 			
 			contactsController.createModelFromFile(fileName);
