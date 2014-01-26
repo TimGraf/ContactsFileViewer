@@ -1,0 +1,15 @@
+-------------------------------------------  Programming & Code review/discussion -------------------------------------------
+
+Meetup Mgmt
+============
+
+Write a program that takes the given CSV data (see below) containing contact information in structured format.  Can assume every Contact is a member of a company.
+
+The program should support the following Use Cases
+1) As a User, I need to read in the contacts file in CSV / XLS compatible format
+
+2) As a User, I should be able to view a file containing an alphabetically sorted list of companies with each line containing a unique company.
+ 
+Constraints:  
+1) Dates may be specified in different formats.  They should be normalized to one format (developer can choose).
+2) We are looking for an object oriented solution as opposed to a PERL/shell/awk/sed script nor a solution implemented in a purely functional paradigm
