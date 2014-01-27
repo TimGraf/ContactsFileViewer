@@ -26,7 +26,7 @@ public class ContactsFileReader {
 				throw new Exception("Invalid CSV file.");
 			}
             
-			Contact  contact = Contact.createContactFromTokens(tokens);
+			Contact contact = Contact.createContactFromTokens(tokens);
             
 			model.addContact(contact);
 		}

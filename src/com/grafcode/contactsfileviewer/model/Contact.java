@@ -98,25 +98,25 @@ public class Contact {
 	}
 
 	private Contact(String[] tokens) throws URISyntaxException, ParseException {
-		this.userName 			= tokens[0];
-		this.userId 			= tokens[1];
-		this.title 				= tokens[2];
-		this.memberId 			= tokens[3];
-		this.companyName 		= tokens[4];
-		this.joinedGroupDate 	= stringTokenToDate(tokens[5]);
-		this.lastGroupVisitDate = stringTokenToDate(tokens[6]);
-		this.lastAttendedDate 	= stringTokenToDate(tokens[7]);
-		this.rsvpTotal 			= stringTokenToInt(tokens[8]);
-		this.rsvpYes 			= stringTokenToInt(tokens[9]);
-		this.rsvpMaybe 			= stringTokenToInt(tokens[10]);
-		this.rsvpNo 			= stringTokenToInt(tokens[11]);
-		this.numberAttended 	= stringTokenToInt(tokens[12]);
-		this.numberNoShows 		= stringTokenToInt(tokens[13]);
-		this.intro 				= yesNoStringTokenToBoolean(tokens[14]);
-		this.photo 				= yesNoStringTokenToBoolean(tokens[15]);
-		this.assistantOrganizer = yesNoStringTokenToBoolean(tokens[16]);
-		this.malingList 		= stringTokenToEnum(tokens[17]);
-		this.profileUri 		= stringTokenToUri(tokens[18]);
+		this.userName			= tokens[0];
+		this.userId				= tokens[1];
+		this.title				= tokens[2];
+		this.memberId			= tokens[3];
+		this.companyName		= tokens[4];
+		this.joinedGroupDate	= stringTokenToDate(tokens[5]);
+		this.lastGroupVisitDate	= stringTokenToDate(tokens[6]);
+		this.lastAttendedDate	= stringTokenToDate(tokens[7]);
+		this.rsvpTotal			= stringTokenToInt(tokens[8]);
+		this.rsvpYes			= stringTokenToInt(tokens[9]);
+		this.rsvpMaybe			= stringTokenToInt(tokens[10]);
+		this.rsvpNo				= stringTokenToInt(tokens[11]);
+		this.numberAttended		= stringTokenToInt(tokens[12]);
+		this.numberNoShows		= stringTokenToInt(tokens[13]);
+		this.intro				= yesNoStringTokenToBoolean(tokens[14]);
+		this.photo				= yesNoStringTokenToBoolean(tokens[15]);
+		this.assistantOrganizer	= yesNoStringTokenToBoolean(tokens[16]);
+		this.malingList			= stringTokenToEnum(tokens[17]);
+		this.profileUri			= stringTokenToUri(tokens[18]);
 	}
 
 	public String getUserName() {
