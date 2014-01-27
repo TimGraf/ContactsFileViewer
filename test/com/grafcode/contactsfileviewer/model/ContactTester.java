@@ -27,7 +27,7 @@ public class ContactTester {
 	}
 	
 	@Test
-	public void testExpectedGrouJoinedDateFormat() throws URISyntaxException, ParseException {
+	public void testExpectedGroupJoinedDateFormat() throws URISyntaxException, ParseException {
 		Contact contact = Contact.createContactFromTokens(validTokens);
 		org.junit.Assert.assertEquals("Date format not what was expected.", "2010/11/18", contact.getJoinedGroupDateAsString());
 	}
