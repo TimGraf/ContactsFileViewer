@@ -31,6 +31,8 @@ public class ContactsFileReader {
             model.addContact(contact);
         }
 		
+		fileReader.close();
+		
 		return model;
 	}
 }
