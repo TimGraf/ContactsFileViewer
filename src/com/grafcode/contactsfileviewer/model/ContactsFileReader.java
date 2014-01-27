@@ -20,11 +20,11 @@ public class ContactsFileReader {
 		ContactsModel model    = new ContactsModel();
 		
 		while ((nextLine = fileReader.readLine()) != null) {
-            String[] tokens  = nextLine.split(VALUE_SEPERATOR);
+			String[] tokens  = nextLine.split(VALUE_SEPERATOR);
             
-            if (tokens.length == 0) {
-            	throw new Exception("Invalid CSV file.");
-            }
+			if (tokens.length == 0) {
+				throw new Exception("Invalid CSV file.");
+			}
             
             Contact  contact = Contact.createContactFromTokens(tokens);
             
