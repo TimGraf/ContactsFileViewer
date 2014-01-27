@@ -17,7 +17,7 @@ public class ContactsFileReader {
 	
 	public ContactsModel buildContactsModelFromFile() throws Exception {
 		String        nextLine = fileReader.readLine(); // read header line but don't use it
-		ContactsModel store    = new ContactsModel();
+		ContactsModel model    = new ContactsModel();
 		
 		while ((nextLine = fileReader.readLine()) != null) {
             String[] tokens  = nextLine.split(VALUE_SEPERATOR);
@@ -28,9 +28,9 @@ public class ContactsFileReader {
             
             Contact  contact = Contact.createContactFromTokens(tokens);
             
-            store.addContact(contact);
+            model.addContact(contact);
         }
 		
-		return store;
+		return model;
 	}
 }
