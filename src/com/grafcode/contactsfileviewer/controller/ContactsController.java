@@ -1,7 +1,5 @@
 package com.grafcode.contactsfileviewer.controller;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Collection;
 
 import com.grafcode.contactsfileviewer.model.ContactsFileReader;
@@ -12,7 +10,7 @@ public class ContactsController {
 	ContactsModel contactsModel;
 	ContactsView  contactsView = new ContactsView();
 	
-	public void createModelFromFile(String fileName) throws IllegalStateException, IOException, URISyntaxException {
+	public void createModelFromFile(String fileName) throws Exception {
 		ContactsFileReader fileReader = new ContactsFileReader(fileName);
 		
 		contactsModel = fileReader.buildContactsModelFromFile();

@@ -1,6 +1,3 @@
-import java.io.IOException;
-import java.net.URISyntaxException;
-
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -46,26 +43,28 @@ public class ContactsFileViewer {
 		return parser.parse(options, aruments);
 	}
 	
-	static void handleCommandLineOptions(CommandLine commandLine) throws IllegalStateException, IOException, URISyntaxException {
+	static void handleCommandLineOptions(CommandLine commandLine) throws Exception {
 		ContactsController contactsController = new ContactsController();
-		
-		if (commandLine.hasOption(FILE_OPTION)) {
-			// XXX required option if 
-			String fileName = commandLine.getOptionValue(FILE_OPTION);
-			
-			contactsController.createModelFromFile(fileName);
-		}
-		
-		if (commandLine.hasOption(PRINT_COMPANIES_OPTION)) {
-			contactsController.displayUniqueSortedComanyNames();
-		} 
-		
-		if (commandLine.hasOption(PRINT_USERS_OPTION)) {
-			contactsController.displayAllUserNamesSorted();
-		} 
 		
 		if (commandLine.hasOption(PRINT_HELP_OPTION)) {
 			printHelpMessage();
+		} else {
+		
+			if (commandLine.hasOption(FILE_OPTION)) {
+				String fileName = commandLine.getOptionValue(FILE_OPTION);
+				
+				contactsController.createModelFromFile(fileName);
+				
+				if (commandLine.hasOption(PRINT_COMPANIES_OPTION)) {
+					contactsController.displayUniqueSortedComanyNames();
+				} 
+				
+				if (commandLine.hasOption(PRINT_USERS_OPTION)) {
+					contactsController.displayAllUserNamesSorted();
+				}
+			} else {
+				printHelpMessage();
+			}
 		}
 	}
 	

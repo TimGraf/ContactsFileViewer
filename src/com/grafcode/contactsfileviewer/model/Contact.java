@@ -2,6 +2,8 @@ package com.grafcode.contactsfileviewer.model;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Contact {
@@ -29,7 +31,7 @@ public class Contact {
 	private MAILING_LIST malingList;
 	private URI          profileUri;
 	
-	public static Contact createContactFromTokens(String[] tokens) throws URISyntaxException {
+	public static Contact createContactFromTokens(String[] tokens) throws URISyntaxException, ParseException {
 		
 		if (tokens == null) {
 			throw new IllegalArgumentException("Argument must not be null.");
@@ -40,9 +42,33 @@ public class Contact {
 		return new Contact(tokens);	
 	}
 	
-	static Date stringTokenToDate(String token) {
-		// XXX
-		return new Date();
+	static Date stringTokenToDate(String token) throws ParseException {
+		Date date = null;
+		
+		if (token.length() > 0) {
+			SimpleDateFormat inputDateFormat  = new SimpleDateFormat();
+			
+			// assume dates are either mm/dd/yy or mm/dd/yyyy
+			inputDateFormat.applyPattern("d/m/y");
+			
+			date = inputDateFormat.parse(token);
+		}
+		
+		return date;
+	}
+	
+	static String dateToFormattedString(Date date) {
+		String dateString = "";
+		
+		if (date != null) {
+			SimpleDateFormat outputDateFormat = new SimpleDateFormat();
+			
+			outputDateFormat.applyPattern("yyyy/mm/dd");
+			
+			dateString = outputDateFormat.format(date);
+		}
+		
+		return dateString;
 	}
 	
 	static int stringTokenToInt(String token) {
@@ -71,7 +97,7 @@ public class Contact {
 		return new URI(token);
 	}
 
-	private Contact(String[] tokens) throws URISyntaxException {
+	private Contact(String[] tokens) throws URISyntaxException, ParseException {
 		this.userName 			= tokens[0];
 		this.userId 			= tokens[1];
 		this.title 				= tokens[2];
@@ -123,6 +149,18 @@ public class Contact {
 
 	public Date getLastAttendedDate() {
 		return (Date)lastAttendedDate.clone();
+	}
+	
+	public String getJoinedGroupDateAsString() {
+		return dateToFormattedString((Date)joinedGroupDate.clone());
+	}
+
+	public String getLastGroupVisitDateAsString() {
+		return dateToFormattedString((Date)lastGroupVisitDate.clone());
+	}
+
+	public String getLastAttendedDateAsString() {
+		return dateToFormattedString((Date)lastAttendedDate.clone());
 	}
 
 	public int getRsvpTotal() {
