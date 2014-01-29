@@ -43,13 +43,13 @@ public class ContactsFileReader {
 	}
 	
 	void parseContactData(String lineFromFile) throws Exception {
-			String[] tokens  = lineFromFile.split(VALUE_SEPERATOR);
-            
-			if (tokens.length == 0) {
-				throw new Exception("Invalid CSV file.");
-			}
-            
-			Contact contact = Contact.createContactFromTokens(tokens);
-			model.addContact(contact);
+		String[] tokens  = lineFromFile.split(VALUE_SEPERATOR);
+        
+		if (tokens.length == 0) {
+			throw new Exception("Invalid CSV file.");
+		}
+        
+		Contact contact = Contact.createContactFromTokens(tokens);
+		model.addContact(contact);
 	}
 }
