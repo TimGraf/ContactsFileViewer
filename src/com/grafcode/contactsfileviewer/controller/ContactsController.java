@@ -8,9 +8,20 @@ import com.grafcode.contactsfileviewer.view.ContactsView;
 
 public class ContactsController {
 	ContactsModel contactsModel;
-	ContactsView  contactsView = new ContactsView();
+	ContactsView  contactsView;
 	
-	public void createModelFromFile(String fileName) throws Exception {
+	private ContactsController() {
+		contactsView = new ContactsView();
+	}
+	
+	public static ContactsController buildControllerAndInitModelWithFile(String fileName) throws Exception {
+		ContactsController contactsController = new ContactsController();
+		contactsController.createModelFromFile(fileName);
+		
+		return contactsController;
+	}
+	
+	void createModelFromFile(String fileName) throws Exception {
 		ContactsFileReader fileReader = new ContactsFileReader(fileName);
 		
 		contactsModel = fileReader.buildContactsModelFromFile();

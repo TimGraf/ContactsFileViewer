@@ -1,8 +1,5 @@
 package com.grafcode.contactsfileviewer.model;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -11,16 +8,16 @@ import org.junit.runners.JUnit4;
 public class ContactsFileReaderTest {
 	
 	@SuppressWarnings("unused")
-	@Test (expected = IOException.class)
-	public void testNoFileExists() throws IOException, IllegalStateException, URISyntaxException {
+	@Test (expected = Exception.class)
+	public void testNoFileExists() throws Exception {
 		ContactsFileReader contactsFileReader = new ContactsFileReader("blah");
+		ContactsModel model = contactsFileReader.buildContactsModelFromFile();
 	}
 	
 	@Test
 	public void testModelLoded() {
 		try {
 			ContactsFileReader contactsFileReader = new ContactsFileReader("./data/contacts.csv");
-			
 			ContactsModel model = contactsFileReader.buildContactsModelFromFile();
 			
 			org.junit.Assert.assertFalse("Model should not be empty", (model.getTotalNumberOfContactsStored() == 0));

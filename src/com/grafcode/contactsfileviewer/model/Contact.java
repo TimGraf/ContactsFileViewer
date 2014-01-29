@@ -1,8 +1,6 @@
 package com.grafcode.contactsfileviewer.model;
 
 import java.net.URI;
-import java.net.URISyntaxException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -11,27 +9,27 @@ public class Contact {
 	
 	public enum MAILING_LIST {DIGEST, YES, NO};
 	
-	private String       userName;
-	private String       userId;
-	private String       title;
-	private String       memberId;
-	private String       companyName;
-	private Date         joinedGroupDate;
-	private Date         lastGroupVisitDate;
-	private Date         lastAttendedDate;
-	private int          rsvpTotal;
-	private int          rsvpYes;
-	private int          rsvpMaybe;
-	private int          rsvpNo;
-	private int          numberAttended;
-	private int          numberNoShows;
-	private boolean      intro;
-	private boolean      photo;
-	private boolean      assistantOrganizer;
+	private String userName;
+	private String userId;
+	private String title;
+	private String memberId;
+	private String companyName;
+	private Date joinedGroupDate;
+	private Date lastGroupVisitDate;
+	private Date lastAttendedDate;
+	private int rsvpTotal;
+	private int rsvpYes;
+	private int rsvpMaybe;
+	private int rsvpNo;
+	private int numberAttended;
+	private int numberNoShows;
+	private boolean intro;
+	private boolean photo;
+	private boolean assistantOrganizer;
 	private MAILING_LIST malingList;
-	private URI          profileUri;
+	private URI profileUri;
 	
-	public static Contact createContactFromTokens(String[] tokens) throws URISyntaxException, ParseException {
+	public static Contact createContactFromTokens(String[] tokens) throws Exception {
 		
 		if (tokens == null) {
 			throw new IllegalArgumentException("Argument must not be null.");
@@ -41,12 +39,34 @@ public class Contact {
 		
 		return new Contact(tokens);	
 	}
+
+	private Contact(String[] tokens) throws Exception {
+		this.userName = tokens[0];
+		this.userId = tokens[1];
+		this.title = tokens[2];
+		this.memberId = tokens[3];
+		this.companyName = tokens[4];
+		this.joinedGroupDate = stringTokenToDate(tokens[5]);
+		this.lastGroupVisitDate = stringTokenToDate(tokens[6]);
+		this.lastAttendedDate = stringTokenToDate(tokens[7]);
+		this.rsvpTotal = stringTokenToInt(tokens[8]);
+		this.rsvpYes = stringTokenToInt(tokens[9]);
+		this.rsvpMaybe = stringTokenToInt(tokens[10]);
+		this.rsvpNo = stringTokenToInt(tokens[11]);
+		this.numberAttended = stringTokenToInt(tokens[12]);
+		this.numberNoShows = stringTokenToInt(tokens[13]);
+		this.intro = yesNoStringTokenToBoolean(tokens[14]);
+		this.photo = yesNoStringTokenToBoolean(tokens[15]);
+		this.assistantOrganizer = yesNoStringTokenToBoolean(tokens[16]);
+		this.malingList = stringTokenToEnum(tokens[17]);
+		this.profileUri = stringTokenToUri(tokens[18]);
+	}
 	
-	static Date stringTokenToDate(String token) throws ParseException {
+	static Date stringTokenToDate(String token) throws Exception {
 		Date date = null;
 		
 		if (token.length() > 0) {
-			SimpleDateFormat inputDateFormat  = new SimpleDateFormat();
+			SimpleDateFormat inputDateFormat = new SimpleDateFormat();
 			
 			// assume dates are either mm/dd/yy or mm/dd/yyyy
 			inputDateFormat.applyPattern("d/m/y");
@@ -93,30 +113,8 @@ public class Contact {
 		return tokenEnum;
 	}
 	
-	static URI stringTokenToUri(String token) throws URISyntaxException {
+	static URI stringTokenToUri(String token) throws Exception {
 		return new URI(token);
-	}
-
-	private Contact(String[] tokens) throws URISyntaxException, ParseException {
-		this.userName			= tokens[0];
-		this.userId				= tokens[1];
-		this.title				= tokens[2];
-		this.memberId			= tokens[3];
-		this.companyName		= tokens[4];
-		this.joinedGroupDate	= stringTokenToDate(tokens[5]);
-		this.lastGroupVisitDate	= stringTokenToDate(tokens[6]);
-		this.lastAttendedDate	= stringTokenToDate(tokens[7]);
-		this.rsvpTotal			= stringTokenToInt(tokens[8]);
-		this.rsvpYes			= stringTokenToInt(tokens[9]);
-		this.rsvpMaybe			= stringTokenToInt(tokens[10]);
-		this.rsvpNo				= stringTokenToInt(tokens[11]);
-		this.numberAttended		= stringTokenToInt(tokens[12]);
-		this.numberNoShows		= stringTokenToInt(tokens[13]);
-		this.intro				= yesNoStringTokenToBoolean(tokens[14]);
-		this.photo				= yesNoStringTokenToBoolean(tokens[15]);
-		this.assistantOrganizer	= yesNoStringTokenToBoolean(tokens[16]);
-		this.malingList			= stringTokenToEnum(tokens[17]);
-		this.profileUri			= stringTokenToUri(tokens[18]);
 	}
 
 	public String getUserName() {

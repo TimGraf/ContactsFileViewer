@@ -1,19 +1,16 @@
 package com.grafcode.contactsfileviewer.model;
 
-import java.net.URISyntaxException;
-import java.text.ParseException;
-
 import org.junit.Test;
 
 public class ContactTester {
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void testNullTokensObject() throws URISyntaxException, ParseException {
+	public void testNullTokensObject() throws Exception {
 		Contact.createContactFromTokens(null);
 	}
 	
-	@Test (expected = IllegalArgumentException.class)
-	public void testInvalidNumberOfTokensObject() throws URISyntaxException, ParseException {
+	@Test (expected = Exception.class)
+	public void testInvalidNumberOfTokensObject() throws Exception {
 		Contact.createContactFromTokens(new String[] {"", "", ""});
 	}
 	
@@ -21,13 +18,13 @@ public class ContactTester {
 	String[] validTokens = validLine.split(",");
 	
 	@Test
-	public void testExpectedUserName() throws URISyntaxException, ParseException {
+	public void testExpectedUserName() throws Exception {
 		Contact contact = Contact.createContactFromTokens(validTokens);
 		org.junit.Assert.assertEquals("User name not what was expected.", contact.getUserName(), "Adam Creeger");
 	}
 	
 	@Test
-	public void testExpectedGroupJoinedDateFormat() throws URISyntaxException, ParseException {
+	public void testExpectedGroupJoinedDateFormat() throws Exception {
 		Contact contact = Contact.createContactFromTokens(validTokens);
 		org.junit.Assert.assertEquals("Date format not what was expected.", "2010/11/18", contact.getJoinedGroupDateAsString());
 	}

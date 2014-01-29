@@ -17,16 +17,16 @@ public class ContactsModel {
 		addCollectionOfContacts(contacts);
 	}
 	
-	public int getTotalNumberOfContactsStored() {
-		return contacts.size();
-	}
-	
 	public void addCollectionOfContacts(Collection<Contact> contacts) {
 		contacts.addAll(contacts);
 	}
 	
 	public void addContact(Contact contact) {
 		contacts.add(contact);
+	}
+	
+	public int getTotalNumberOfContactsStored() {
+		return contacts.size();
 	}
 	
 	public Collection<String> getSortedUserNamesFromContacts() {
@@ -52,7 +52,7 @@ public class ContactsModel {
 		return getSortedUniquePropertiesCollection(companies);
 	}
 	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings({"rawtypes", "unchecked"})
 	Collection getSortedUniquePropertiesCollection(Collection properties) {
 		Set set = new TreeSet();
 		

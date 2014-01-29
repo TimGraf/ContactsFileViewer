@@ -44,22 +44,11 @@ public class ContactsFileViewer {
 	}
 	
 	static void handleCommandLineOptions(CommandLine commandLine) throws Exception {
-		ContactsController contactsController = new ContactsController();
 		
 		if (commandLine.hasOption(PRINT_HELP_OPTION)) {
 			printHelpMessage();
 		} else if (commandLine.hasOption(FILE_OPTION)) {
-			String fileName = commandLine.getOptionValue(FILE_OPTION);
-			
-			contactsController.createModelFromFile(fileName);
-			
-			if (commandLine.hasOption(PRINT_COMPANIES_OPTION)) {
-				contactsController.displayUniqueSortedComanyNames();
-			} 
-			
-			if (commandLine.hasOption(PRINT_USERS_OPTION)) {
-				contactsController.displayAllUserNamesSorted();
-			}
+			handleFileOptions(commandLine);
 		}
 	}
 	
@@ -67,6 +56,19 @@ public class ContactsFileViewer {
 		HelpFormatter formatter = new HelpFormatter();
 		
 		formatter.printHelp("ContactsFileViewer", options);
+	}
+	
+	static void handleFileOptions(CommandLine commandLine) throws Exception {
+		String fileName = commandLine.getOptionValue(FILE_OPTION);
+		ContactsController contactsController = ContactsController.buildControllerAndInitModelWithFile(fileName);
+		
+		if (commandLine.hasOption(PRINT_COMPANIES_OPTION)) {
+			contactsController.displayUniqueSortedComanyNames();
+		} 
+		
+		if (commandLine.hasOption(PRINT_USERS_OPTION)) {
+			contactsController.displayAllUserNamesSorted();
+		}
 	}
 	
 	static void handleException(Exception exception) {
